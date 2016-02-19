@@ -6,6 +6,7 @@ var (
 	ErrTagNameNotExists = errors.New("tag name not exists")
 	ErrUnsupportedType  = errors.New("unsupported valid type")
 	ErrUnknownFuncName  = errors.New("unknown valid function name")
+	ErrEmptyName        = errors.New("valid function name can't be empty")
 
 	ErrBadParameter = errors.New("bad parameter")
 	ErrRegexCompile = errors.New("compile invalid parameter")
@@ -19,4 +20,5 @@ var (
 	ErrMaxNumber  = errors.New("max number is invalid")
 	ErrRangeUpper = errors.New("out of range, greater than upper limit")
 	ErrRangeLower = errors.New("out of range, less than lower limit")
+	ErrNil        = errors.New("value can't be nil")
 )

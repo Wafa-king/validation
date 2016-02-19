@@ -18,12 +18,12 @@ func (p *Min) IsValid(v interface{}, param string) (err error) {
 
 	var val int64
 	if val, err = format.ToInt64(v); err != nil {
-		return ErrBadParameter
+		return ErrUnsupportedType
 	}
 
 	var num int64
 	if num, err = format.ToInt64(param); err != nil {
-		return ErrBadParameter
+		return ErrUnsupportedType
 	}
 
 	if num > val {

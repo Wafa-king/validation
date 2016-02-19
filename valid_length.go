@@ -21,7 +21,7 @@ func (*Length) IsValid(v interface{}, param string) (err error) {
 	var num int64
 	var valid bool
 	if num, err = format.ToInt64(param); err != nil {
-		return ErrBadParameter
+		return ErrUnsupportedType
 	}
 
 	val := reflect.ValueOf(v)

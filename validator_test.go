@@ -1,6 +1,7 @@
 package validation_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/go-rut/validation"
@@ -188,6 +189,71 @@ func TestEmail(t *testing.T) {
 
 	cpEmail.Email = "hhh@rutcode.com"
 	err = validation.Validate(cpEmail)
+	if err != nil {
+		t.Error(err)
+	}
+
+}
+
+func TestRequired(t *testing.T) {
+
+	type CPRequired struct {
+		Email string `valid:"required"`
+		Bool  bool   `valid:"required"`
+	}
+	cpRequired := CPRequired{Bool: true}
+
+	err := validation.Validate(cpRequired)
+	if err != validation.ErrNil {
+		t.Error("expect:" + validation.ErrNil.Error())
+	}
+
+	cpRequired.Email = "hhh@rutcode.com"
+	cpRequired.Bool = false
+	err = validation.Validate(cpRequired)
+	if err != validation.ErrNil {
+		t.Error("expect:" + validation.ErrNil.Error())
+	}
+
+	cpRequired.Bool = true
+	err = validation.Validate(cpRequired)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+type TestNewValidation struct{}
+
+func (*TestNewValidation) IsValid(v interface{}, _ string) error {
+	if v.(int64) < 1000 {
+		return fmt.Errorf("test below 1000")
+	}
+	return nil
+}
+
+func NewTestNewValidation() *TestNewValidation {
+	return new(TestNewValidation)
+}
+
+func TestRegistCustomerValidator(t *testing.T) {
+
+	type CPValidation1 struct {
+		Digit int64 `valid:"test1"`
+	}
+
+	validation.RegistCustomerValidator("test1", NewTestNewValidation()).
+		RegistCustomerValidator("test2", NewTestNewValidation())
+
+	err := validation.Validate(CPValidation1{Digit: 1})
+	if err == nil {
+		t.Error("expect: test below 1000")
+	}
+
+	type CPValidation2 struct {
+		Digit int64 `valid:"test2"`
+	}
+
+	err = validation.Validate(CPValidation2{Digit: 1001})
 	if err != nil {
 		t.Error(err)
 	}

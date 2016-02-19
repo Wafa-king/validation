@@ -17,13 +17,11 @@ type Validation struct {
 type tagFunc struct {
 	Name  string
 	Param string
-	Valid ValidFunc
+	Valid func(interface{}, string) error
 }
 
-type ValidFunc func(data interface{}, param string) (err error)
-
 type Validator interface {
-	IsValid(data interface{}, param string) (err error)
+	IsValid(interface{}, string) error
 }
 
 var (
@@ -33,6 +31,7 @@ var (
 func init() {
 	validation = new(Validation)
 	validation.validFuncs = map[string]Validator{
+		"required":    NewRequired(),
 		"cellphone86": NewCellphone86(),
 		"regex":       NewRegex(),
 		"length":      NewLength(),
@@ -42,6 +41,23 @@ func init() {
 		"email":       NewEmail(),
 		"creditcard":  NewCreditCard(),
 	}
+}
+
+func RegistCustomerValidator(name string, v Validator) *Validation {
+	return validation.RegistCustomerValidator(name, v)
+}
+
+func (p *Validation) RegistCustomerValidator(name string, v Validator) *Validation {
+	if name == "" {
+		panic(ErrEmptyName)
+	}
+
+	if v == nil {
+		delete(p.validFuncs, name)
+		return p
+	}
+	p.validFuncs[name] = v
+	return p
 }
 
 func Validate(s interface{}) error {
