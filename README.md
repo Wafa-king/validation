@@ -6,7 +6,7 @@ set "valid:-" flag in struct
 
 # Usage
 
-## 1. validate customer
+## 1. customer validator
 
 **follow the interface**
 
