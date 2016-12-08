@@ -1,12 +1,17 @@
 # validation
 
+
 valid go struct values
 
 set "valid:-" flag in struct
 
-# Usage
+## Build
 
-## 1. customer validator
+* [![Build Status](https://travis-ci.org/go-rut/validation.png)](https://travis-ci.org/go-rut/validation)
+
+## Usage
+
+### 1. customer validator
 
 **follow the interface**
 
@@ -62,7 +67,7 @@ func TestRegistCustomerValidator(t *testing.T) {
 }
 ```
 
-## 2. validate cellphone86
+### 2. validate cellphone86
 
 ```go
 func TestCellphone86(t *testing.T) {
@@ -92,7 +97,7 @@ func TestCellphone86(t *testing.T) {
 }
 ```
 
-## 3. validate length
+### 3. validate length
 
 ```go
 func TestLength(t *testing.T) {
@@ -148,7 +153,7 @@ func TestLength(t *testing.T) {
 }
 ```
 
-## 4. validate maximum number
+### 4. validate maximum number
 
 ```go
 func TestMax(t *testing.T) {
@@ -178,7 +183,7 @@ func TestMax(t *testing.T) {
 }
 ```
 
-## 5. validate minimum number
+### 5. validate minimum number
 
 ```go
 func TestMin(t *testing.T) {
@@ -208,7 +213,7 @@ func TestMin(t *testing.T) {
 }
 ```
 
-## 5. validate range of number
+### 6. validate range of number
 
 ```go
 func TestRange(t *testing.T) {
@@ -249,7 +254,7 @@ func TestRange(t *testing.T) {
 }
 ```
 
-## 6. validate email
+### 7. validate email
 
 ```go
 func TestEmail(t *testing.T) {
@@ -273,7 +278,7 @@ func TestEmail(t *testing.T) {
 }
 ```
 
-## 7. validate required values
+### 8. validate required values
 
 ```go
 func TestRequired(t *testing.T) {
