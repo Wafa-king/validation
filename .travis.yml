@@ -1,0 +1,9 @@
+language: go
+
+install:
+  - go get github.com/smartystreets/goconvey/convey
+  - go get github.com/go-rut/format
+  - go get github.com/go-rut/validation
+
+script:
+  - go test -v ./...
