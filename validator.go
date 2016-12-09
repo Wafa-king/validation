@@ -44,6 +44,8 @@ func init() {
 		"range":       NewRange(),
 		"email":       NewEmail(),
 		"creditcard":  NewCreditCard(),
+		"fmax":        NewFloatMax(),
+		"fmin":        NewFloatMin(),
 	}
 }
 

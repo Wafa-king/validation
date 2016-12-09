@@ -141,6 +141,60 @@ func TestMin(t *testing.T) {
 	}
 }
 
+func TestFloatMin(t *testing.T) {
+
+	type CPTest struct {
+		Digit1 float32 `valid:"fmin=1"`
+		Digit2 int     `valid:"fmin=1"`
+	}
+
+	cpTest := CPTest{Digit1: 1.0, Digit2: 1}
+
+	err := validation.Validate(cpTest)
+	if err != nil {
+		t.Error(err)
+	}
+
+	cpTest.Digit1 = 2
+	err = validation.Validate(cpTest)
+	if err != nil {
+		t.Error(err)
+	}
+
+	cpTest.Digit1 = 0.9
+	err = validation.Validate(cpTest)
+	if err == nil {
+		t.Error("expect:" + validation.ErrMinNumber.Error())
+	}
+}
+
+func TestFloatMax(t *testing.T) {
+
+	type CPTest struct {
+		Digit1 float32 `valid:"fmax=1"`
+		Digit2 int     `valid:"fmax=1"`
+	}
+
+	cpTest := CPTest{Digit1: 1, Digit2: 1}
+
+	err := validation.Validate(cpTest)
+	if err != nil {
+		t.Error(err)
+	}
+
+	cpTest.Digit1 = 0.8
+	err = validation.Validate(cpTest)
+	if err != nil {
+		t.Error(err)
+	}
+
+	cpTest.Digit1 = 2.0
+	err = validation.Validate(cpTest)
+	if err == nil {
+		t.Error("expect:" + validation.ErrMinNumber.Error())
+	}
+}
+
 func TestRange(t *testing.T) {
 
 	type CPInt struct {
