@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/go-rut/validation"
+	"github.com/go-trellis/validation"
 )
 
 func TestCellphone86(t *testing.T) {

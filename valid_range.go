@@ -7,7 +7,7 @@ package validation
 import (
 	"strings"
 
-	"github.com/go-rut/format"
+	"github.com/go-trellis/formats"
 )
 
 type Range struct{}
@@ -28,15 +28,15 @@ func (p *Range) IsValid(v interface{}, param string) (err error) {
 	}
 
 	var val int64
-	if val, err = format.ToInt64(v); err != nil {
+	if val, err = formats.ToInt64(v); err != nil {
 		return ErrUnsupportedType
 	}
 
 	var p1, p2 int64
-	if p1, err = format.ToInt64(tokens[0]); err != nil {
+	if p1, err = formats.ToInt64(tokens[0]); err != nil {
 		return ErrUnsupportedType
 	}
-	if p2, err = format.ToInt64(tokens[1]); err != nil {
+	if p2, err = formats.ToInt64(tokens[1]); err != nil {
 		return ErrUnsupportedType
 	}
 

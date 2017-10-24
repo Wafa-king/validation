@@ -7,7 +7,7 @@ package validation
 import (
 	"reflect"
 
-	"github.com/go-rut/format"
+	"github.com/go-trellis/formats"
 )
 
 type Length struct{}
@@ -24,7 +24,7 @@ func (*Length) IsValid(v interface{}, param string) (err error) {
 
 	var num int64
 	var valid bool
-	if num, err = format.ToInt64(param); err != nil {
+	if num, err = formats.ToInt64(param); err != nil {
 		return ErrUnsupportedType
 	}
 

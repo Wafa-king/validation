@@ -5,7 +5,7 @@
 package validation
 
 import (
-	"github.com/go-rut/format"
+	"github.com/go-trellis/formats"
 )
 
 type FloatMax struct{}
@@ -21,12 +21,12 @@ func NewFloatMax() *FloatMax {
 func (p *FloatMax) IsValid(v interface{}, param string) (err error) {
 
 	var val float64
-	if val, err = format.ToFloat64(v); err != nil {
+	if val, err = formats.ToFloat64(v); err != nil {
 		return ErrUnsupportedType
 	}
 
 	var num float64
-	if num, err = format.ToFloat64(param); err != nil {
+	if num, err = formats.ToFloat64(param); err != nil {
 		return ErrUnsupportedType
 	}
 
