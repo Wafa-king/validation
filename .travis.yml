@@ -2,8 +2,8 @@ language: go
 
 install:
   - go get github.com/smartystreets/goconvey/convey
-  - go get github.com/go-rut/format
-  - go get github.com/go-rut/validation
+  - go get github.com/go-trellis/formats
+  - go get github.com/go-trellis/validation
 
 script:
   - go test -v ./...
