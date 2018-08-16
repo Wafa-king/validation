@@ -17,7 +17,8 @@ var (
 
 	ErrCellphone  = errors.New("cellphone is invalid")
 	ErrEmail      = errors.New("email is invalid")
-	ErrCreditCard = errors.New("creadit card is invalid")
+	ErrCreditCard = errors.New("credit card is invalid")
+	ErrIdCard = errors.New("id card is invalid")
 	ErrRegexMatch = errors.New("failed validate regex")
 	ErrLength     = errors.New("length is invalid")
 	ErrMinNumber  = errors.New("min number is invalid")

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/go-trellis/formats"
+	"unicode/utf8"
 )
 
 type Length struct{}
@@ -31,7 +32,9 @@ func (*Length) IsValid(v interface{}, param string) (err error) {
 	val := reflect.ValueOf(v)
 	switch val.Kind() {
 	case reflect.String:
-		valid = int64(len(val.String())) == num
+		//valid = int64(len(val.String())) == num
+		//valid = int64(len([]rune(v.(string)))) == num
+		valid = int64(utf8.RuneCountInString(v.(string))) == num
 	case reflect.Slice, reflect.Map, reflect.Array:
 		valid = int64(val.Len()) == num
 	default:

@@ -5,7 +5,7 @@
 package validation
 
 const (
-	cellphone86Pattern = `^1[3|4|5|8][0-9]\d{4,8}$`
+	cellphone86Pattern = `^1[3|4|5|6|7|8|9][0-9]\d{4,8}$`
 )
 
 type Cellphone86 struct{}

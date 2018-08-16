@@ -69,6 +69,12 @@ func TestLength(t *testing.T) {
 		t.Error(err)
 	}
 
+	cp1.Digit = "我"
+	err = validation.Validate(cp1)
+	if err != nil {
+		t.Error(err)
+	}
+
 	cp2 := &CPs2{
 		Cellphone86: "13000000000",
 	}
@@ -121,7 +127,17 @@ func TestMin(t *testing.T) {
 		Digit int `valid:"min=1"`
 	}
 
+	type CPStr struct {
+		Str string `valid:"min=1"`
+	}
+
+	type CPSli struct {
+		Sli []int `valid:"min=1"`
+	}
+
 	cpInt := CPInt{Digit: 1}
+	cpStr := CPStr{Str: "a"}
+	cpSli := CPSli{Sli: []int{1, 2}}
 
 	err := validation.Validate(cpInt)
 	if err != nil {
@@ -139,6 +155,35 @@ func TestMin(t *testing.T) {
 	if err == nil {
 		t.Error("expect:" + validation.ErrMinNumber.Error())
 	}
+
+	err = validation.Validate(cpStr)
+	if err != nil{
+		t.Error(err)
+	}
+
+	cpStr.Str = "abc"
+	err = validation.Validate(cpStr)
+	if err != nil{
+		t.Error(err)
+	}
+
+	cpStr.Str = ""
+	err = validation.Validate(cpStr)
+	if err == nil{
+		t.Error(err)
+	}
+
+	err = validation.Validate(cpSli)
+	if err != nil{
+		t.Error(err)
+	}
+
+	cpSli.Sli = []int{}
+	err = validation.Validate(cpSli)
+	if err == nil{
+		t.Error(err)
+	}
+
 }
 
 func TestFloatMin(t *testing.T) {

@@ -46,6 +46,7 @@ func init() {
 		"creditcard":  NewCreditCard(),
 		"fmax":        NewFloatMax(),
 		"fmin":        NewFloatMin(),
+		"idcard":      NewIdCard(),
 	}
 }
 
